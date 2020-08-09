@@ -5,23 +5,23 @@ import mongoose from 'mongoose'
 dotenv.config()
 
 const port = process.env.PORT || '3000'
-const mongodb = 'mongodb://database/techstack'
+const mongodb = process.env.DB || ''
 
-;(async () => {
-  await mongoose.connect(mongodb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-})()
+async function init () {
+  try {
+    await mongoose.connect(mongodb, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
 
-mongoose.connection.on('error', (err) => {
-  console.log('Error connecting to database: ', err)
-})
+    console.log('Database connection established')
 
-mongoose.connection.on('open', () => {
-  console.log('Database connection established')
+    server.listen(port, () => {
+      console.log(`Listening on port ${port}`)
+    })
+  } catch (error) {
+    console.log(`Error starting server: ${error}`)
+  }
+}
 
-  server.listen(port, () => {
-    console.log(`Lesten on port ${port}`)
-  })
-})
+init()

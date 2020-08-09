@@ -8,7 +8,7 @@
     "start": "node dist/main.js",
     "dev": "ts-node src/main.ts",
     "test": "jest",
-    "docker": "npm run build && docker-compose up"
+    "docker": "docker-compose up"
   },
   "keywords": [],
   "author": "acornssn@gmail.com",

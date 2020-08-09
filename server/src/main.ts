@@ -22,6 +22,6 @@ mongoose.connection.on('open', () => {
   console.log('Database connection established')
 
   server.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    console.log(`Lesten on port ${port}`)
   })
 })

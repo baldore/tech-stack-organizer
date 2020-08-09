@@ -7,8 +7,12 @@ import * as middlewares from './middlewares'
 import * as controllers from './controller'
 
 const server = express()
+const loggerMode = process.env.NODE_ENV === 'production' ? 'common' : 'dev'
 
-server.use(morgan('common'))
+server.use(morgan(loggerMode, {
+  skip: () => process.env.NODE_ENV === 'test',
+}))
+
 server.use(cors())
 server.use(helmet())
 server.use(bodyParser.json())
